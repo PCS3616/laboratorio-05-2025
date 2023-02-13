@@ -179,8 +179,6 @@ def test_2():
     assert filecode.exists(), f"A submissão não contém o arquivo '{filecode.name}'"
 
     input_file = tempfile.NamedTemporaryFile(mode='w')
-    '''
-    # Escrever teste em assembly devia pagar adicional de insalubridade
     input_file.writelines("""
 0000 0300
 
@@ -211,9 +209,11 @@ def test_2():
 0326 3001 ; AC <= 1
 0328 92FE ; Sinaliza que MNEM2OP funcionou
 032A C32A ; HALT
+
+0410 0001
+0412 4A5A
     """)
     input_file.flush()
-    '''
 
     output_file = tempfile.NamedTemporaryFile(mode='r')
 
