@@ -5,25 +5,30 @@ import tempfile
 
 submission_path = Path("./submission")
 
+
 def run_mvn(input_text):
     # I hate the current MVN
     # A good class solve this, but now are a really mess code
 
     p = subprocess.run(
         [
-            "python", 
-            "-m", 
-            "MVN.mvnMonitor"
+            "python",
+            "-m",
+            "MVN.mvnMonitor",
+            "--max_step",
+            "50000"
         ],
         input=input_text,
-        capture_output=True, 
+        capture_output=True,
         text=True,
     )
     return p.stdout
 
+
 def test_1():
     filecode = submission_path / "quadrados-perfeitos.mvn"
-    assert filecode.exists(), f"A submissão não contém o arquivo '{filecode.name}'"
+    assert filecode.exists(
+    ), f"A submissão não contém o arquivo '{filecode.name}'"
 
     output_file = tempfile.NamedTemporaryFile(mode='r')
 
@@ -54,16 +59,18 @@ def test_1():
 Final do dump.""".strip()
 
     assert mvn_output == expected_output, \
-            f"Seu código não está correto"
+        f"Seu código não está correto"
+
 
 def test_2():
     filecode = submission_path / "io.mvn"
-    assert filecode.exists(), f"A submissão não contém o arquivo '{filecode.name}'"
+    assert filecode.exists(
+    ), f"A submissão não contém o arquivo '{filecode.name}'"
 
     newcodefile = tempfile.NamedTemporaryFile(mode='w')
 
     with open(filecode) as f:
-        new=re.sub("(e|E)100", "e300", f.read())
+        new = re.sub("(e|E)100", "e300", f.read())
         newcodefile.write(new)
         newcodefile.flush()
 
@@ -85,7 +92,7 @@ def test_2():
     ]
 
     run_mvn('\n'.join(inputs))
-    
+
     mvn_output = outputfile.read().replace('\n', '')
     assert mvn_output == "61", \
         f"Seu código não está correto\nConfira seu envio."
