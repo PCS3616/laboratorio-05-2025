@@ -55,6 +55,14 @@ formato `<x-d1><x-d2><s><s><y-d1><y-d2>`, onde:
   - `<x-d2>` é o segundo dígito de `y`.
 
 Por exemplo, \"07 54\" é uma entrada válida, e o programa deve imprimir
-\"61\" na saída.
+\"61\" na saída. Lembrando que em ASCII 07 é 0x3037 e 54 é 0x3534, enquanto 61 é 0x3631.
+
+Para realizar esse exercício, utilize o seguinte algoritmo:
+
+- Subtraia 0x3030 de ambos os números obtidos pelo teclado.
+- Some esses números.
+- Caso o dígito menos significativo do número resultante da soma, seja maior ou igual a A, subtraia 0x000A e some 0x0100 para realizar o "vai-um".
+- Soma 0x3030 ao número resultante do passo anterior.
+- Imprima esse número no monitor.
 
 OBS.: Consulte a [tabela ASCII](http://ascii.cl/)
