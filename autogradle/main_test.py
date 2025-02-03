@@ -1,34 +1,13 @@
 from pathlib import Path
-import subprocess
 import re
 import tempfile
 
-submission_path = Path("./submission")
-
-
-def run_mvn(input_text):
-    # I hate the current MVN
-    # A good class solve this, but now are a really mess code
-
-    p = subprocess.run(
-        [
-            "python",
-            "-m",
-            "MVN.mvnMonitor",
-            "--max_step",
-            "50000"
-        ],
-        input=input_text,
-        capture_output=True,
-        text=True,
-    )
-    return p.stdout
+from utils import executable, run_mvn, SUBMISSION_PATH, assert_file_exists
 
 
 def test_1():
-    filecode = submission_path / "quadrados-perfeitos.mvn"
-    assert filecode.exists(
-    ), f"A submissão não contém o arquivo '{filecode.name}'"
+    assert_file_exists(SUBMISSION_PATH / "quadrados-perfeitos.asm")
+    filecode = executable(SUBMISSION_PATH / "quadrados-perfeitos")
 
     output_file = tempfile.NamedTemporaryFile(mode='r')
 
@@ -63,9 +42,8 @@ Final do dump.""".strip()
 
 
 def test_2():
-    filecode = submission_path / "io.mvn"
-    assert filecode.exists(
-    ), f"A submissão não contém o arquivo '{filecode.name}'"
+    assert_file_exists(SUBMISSION_PATH / "io.asm")
+    filecode = executable(SUBMISSION_PATH / "io")
 
     newcodefile = tempfile.NamedTemporaryFile(mode='w')
 

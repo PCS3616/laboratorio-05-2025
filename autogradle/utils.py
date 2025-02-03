@@ -4,11 +4,14 @@ import subprocess
 
 SUBMISSION_PATH = Path('./submission')
 
+def assert_file_exists(filecode: Path):
+    assert filecode.exists(), f"A submissão não contém o arquivo '{filecode.name}'"
 
 def mvn_cli(arguments: list[str], output_filepath: str | Path):
     command = f"./mvn-cli {' '.join(arguments)} || mvn-cli {' '.join(arguments)}"
     with open(output_filepath, "w", encoding="utf8") as output_file:
         subprocess.run(command, shell=True, check=True, stdout=output_file)
+
 
 def executable(output_dir: Path, main: Path, *subroutines: Path) -> Path:
     main_filename = output_dir / main.stem
@@ -31,17 +34,21 @@ def executable(output_dir: Path, main: Path, *subroutines: Path) -> Path:
 
     return executable_filepath
 
+
 def executable(main: Path) -> Path:
   executable_filepath = Path(f"{main}.mvn")
   mvn_cli(f"assemble -i {main}.asm".split(), executable_filepath)
   return executable_filepath
+
 
 def run_mvn(input_text: str):
     p = subprocess.run(
         [
             "python",
             "-m",
-            "MVN.mvnMonitor"
+            "MVN.mvnMonitor",
+            "--max_step",
+            "50000",
         ],
         input=input_text,
         capture_output=True,

@@ -1,7 +1,7 @@
 from pathlib import Path
 from tempfile import NamedTemporaryFile
 
-from utils import executable, run_mvn, SUBMISSION_PATH
+from utils import executable, run_mvn, SUBMISSION_PATH, assert_file_exists
 
 def limpa(string):
     res=string.split(" ")
@@ -14,10 +14,8 @@ def fatorial(n: int):
   return n*fatorial(n-1)
 
 def test_fat(n: int = 0):
-    filecode = SUBMISSION_PATH / "fatorial.asm"
-    assert filecode.exists(), f"A submissão não contém o arquivo '{filecode.name}'"
+    assert_file_exists(SUBMISSION_PATH / "fatorial.asm")
     filecode = executable(SUBMISSION_PATH / "fatorial")
-    assert filecode.exists(), f"A submissão não contém o arquivo '{filecode.name}'"
 
     n_str = "{:04X}".format(n)
     input_file = NamedTemporaryFile(mode='w')
