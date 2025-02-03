@@ -1,9 +1,37 @@
 # PCS3616 - Laboratório 5 - MVN 3
 
-Nesta aula vamos continuar o trabalho da semana passada, hoje você deve
-criar mais alguns programas em linguagem de máquina de MVN.
+Na aula de hoje começamos o estudo e uso da linguagem de montagem da
+MVN, o ASM (assembly), e da função de pilha implementada na MVN.
+A partir desta aula você só escreverá códigos em ASM, e para isso
+precisamos usar os módulos Montador, Ligador e Relocador.
 
-## 1. `quadrados-perfeitos.mvn`
+## Instalação das ferramentas
+
+Diferentemente do monitor, essas ferramentas foram escritas em uma
+linguagem compilada ([Rust](https://www.rust-lang.org/)), então é
+somente necessário instalar um executável.
+Instruções sobre esse processo e sobre as opções disponíveis nas
+ferramentas estão disponíveis
+[em seu repositório](https://github.com/PCS3616/mvn-rs#readme)
+
+### Execução do código gerado
+
+Executar o código MVN gerado deve ser feito da mesma forma que com o
+código MVN escrito manualmente.
+
+## Exercícios
+
+**ATENÇÃO:** os entregáveis desta semana deverão estar em formato ASM.
+Você pode (e deve) utilizar o Assembler do utilitário `mvn-cli` para
+gerar os executáveis e testá-los localmente em seu simulador.
+
+## 0.  `fatorial.asm`
+No laboratório 4, você escreveu a sub-rotina fatorial. Agora,
+    você irá reescrevê-la, mas na linguagem de montagem da MVN.
+    Considere os rótulos N e RES, localizados nas posições de memória 0x100
+    e 0x102, que representam respectivamente o argumento e o resultado do fatorial.
+
+## 1. `quadrados-perfeitos.asm`
 Desenvolva um programa para a MVN que calcule e tabele, a partir da
 posição de memória 0x100, os quadrados perfeitos dos 64 primeiros
 números naturais (0x0, 0x1, 0x2, ..., 0x3F). O cálculo deverá ser
@@ -33,7 +61,7 @@ módulo "mvnMonitor.py".
 
 ![](./media/image1.png)
 
-## 2. `io.mvn`
+## 2. `io.asm`
 Escrever um programa que lê dois números do teclado
 (`x` e `y`), e imprime o valor de `x+y`. Observações:
 
