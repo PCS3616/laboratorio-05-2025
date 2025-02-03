@@ -19,6 +19,27 @@ ferramentas estão disponíveis
 Executar o código MVN gerado deve ser feito da mesma forma que com o
 código MVN escrito manualmente.
 
+## Tabela de mnemônicos
+
+| OPCODE | MNEMONIC | function |
+| --- | --- | --- |
+| 0 | JP |Jumps to the operand address |
+| 1 | JZ |Jumps to the operand address if AC is 0 |
+| 2 | JN |Jumps to the operand address if AC is negative |
+| 3 | LV |Load the operand to AC |
+| 4 | AD |Save in AC the value AC+value stored in operand address |
+| 5 | SB |Save in AC the value AC-value stored in operand address |
+| 6 | ML |Save in AC the value AC*value stored in operand address |
+| 7 | DV |Save in AC the value AC/value stored in operand address |
+| 8 | LD |Save in AC the value stored in operand address |
+| 9 | MM |Save in the operand address the value AC |
+| A | SC |Call subroutine in operand address |
+| B | RS |Return the subroutine that started in operand address |
+| C | HM |Halt machine |
+| D | GD |Save in AC a pair of nibbles from operand device |
+| E | PD |Send value in AC to operand device |
+| F | SO |Calls the supervisor to deal with specific codes, which are given by the operand |
+
 ## Exercícios
 
 **ATENÇÃO:** os entregáveis desta semana deverão estar em formato ASM.
