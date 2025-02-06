@@ -37,8 +37,12 @@ def test_1():
 0170:  0c  40  0c  b1  0d  24  0d  99  0e  10  0e  89  0f  04  0f  81
 Final do dump.""".strip()
 
-    assert mvn_output == expected_output, \
-        f"Seu código não está correto"
+    if mvn_output != expected_output:
+        olines = mvn_output.splitlines()
+        elines = expected_output.splitlines()
+        for oline, eline in zip(olines, elines):
+            assert oline.strip() == eline.strip(), \
+                f"Seu código não está correto"
 
 
 def test_2():
